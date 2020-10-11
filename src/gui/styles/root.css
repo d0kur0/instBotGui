@@ -1,0 +1,54 @@
+body {
+  margin: 10px 40px;
+}
+
+.sticky-save-button {
+  position: fixed;
+  top: 10px;
+  right: 40px;
+  z-index: 10;
+}
+
+.sticky-save-button button {
+  opacity: 0.5;
+}
+
+.sticky-save-button button:hover {
+  opacity: 1;
+}
+
+.full-center {
+  width: 100%;
+  height: 100vh;
+  padding: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+#log {
+  margin-top: 20px;
+}
+
+.blocked::after {
+  content: "";
+  width: 100%;
+  height: 100%;
+  z-index: 50;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(72, 72, 72, 0.7);
+}
+
+.blocked::before {
+  content: "Processed...";
+  top: 50%;
+  left: 50%;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  font-size: 2em;
+  z-index: 51;
+}
