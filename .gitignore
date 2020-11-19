@@ -6,3 +6,4 @@ yarn.lock
 .instbot
 .dist
 yarn-error.log
+limits.json
