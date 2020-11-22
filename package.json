@@ -1,23 +1,23 @@
 {
   "private": true,
-  "name": "instbotgui",
-  "productName": "Instagram Bot UI",
+  "name": "instbot",
+  "productName": "InsagramBotUI",
   "version": "1.0.0",
   "description": "UI application for instagram bot",
   "main": ".dist/mainProcess/src/index.js",
   "scripts": {
-    "dev": "npm run mainProcess-build && cross-env NODE_ENV=development BROWSER=none npm-run-all --parallel react-start electron-start",
-    "start": "cross-env NODE_ENV=production npm-run-all rendererProcess-build mainProcess-build electron-start",
-    "make": "cross-env NODE_ENV=production npm-run-all rendererProcess-build mainProcess-build electron-make",
-    "package": "cross-env NODE_ENV=production npm-run-all rendererProcess-build mainProcess-build electron-package",
+    "dev": "npm run mp-build && cross-env NODE_ENV=development npm-run-all --parallel react-start electron-start",
+    "start": "cross-env NODE_ENV=production npm-run-all rp-build mp-build electron-start",
+    "make": "cross-env NODE_ENV=production npm-run-all rp-build mp-build electron-make",
+    "package": "cross-env NODE_ENV=production npm-run-all rp-build mp-build electron-package",
     "electron-start": "electron-forge start",
     "electron-package": "electron-forge package",
     "electron-make": "electron-forge make",
     "electron-publish": "electron-forge publish",
     "react-lint": "eslint ./src --ext .ts,.js,.tsx",
     "react-start": "react-app-rewired start",
-    "mainProcess-build": "cd mainProcess && tsc",
-    "rendererProcess-build": "react-app-rewired build"
+    "mp-build": "cd mainProcess && tsc",
+    "rp-build": "react-app-rewired build"
   },
   "keywords": [],
   "author": {
@@ -27,7 +27,21 @@
   "license": "MIT",
   "config": {
     "forge": {
-      "packagerConfig": {},
+      "packagerConfig": {
+        "ignore": [
+          "/.idea",
+          "/mainProcess",
+          "/rendererProcess",
+          "/types",
+          "/.editorconfig",
+          "/.gitignore",
+          "/.prettierrc",
+          "/config-overrides.js",
+          "/README.md",
+          "/yarn.lock",
+          "/yarn-error.log"
+        ]
+      },
       "makers": [
         {
           "name": "@electron-forge/maker-squirrel",
@@ -64,8 +78,6 @@
     "@types/react-dom": "^16.9.0",
     "@types/react-redux": "^7.1.9",
     "@types/react-router-dom": "^5.1.6",
-    "@types/redux-logger": "^3.0.8",
-    "@types/redux-saga": "^0.10.5",
     "@types/testing-library__dom": "^7.5.0",
     "@types/unzipper": "^0.10.3",
     "antd": "^4.8.0",
@@ -95,9 +107,7 @@
     "@typescript-eslint/eslint-plugin": "^2.18.0",
     "@typescript-eslint/parser": "^2.18.0",
     "electron": "9.3.1",
-    "eslint": "^6.8.0",
-    "eslint-plugin-import": "^2.20.0",
-    "typescript": "^3.7.0"
+    "typescript": "^4.1.2"
   },
   "eslintConfig": {
     "extends": "react-app"
