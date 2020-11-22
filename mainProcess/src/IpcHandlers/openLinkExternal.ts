@@ -1,6 +1,5 @@
-import { IpcHandler } from "../../../types";
+import { IpcHandler, IpcOpenExternalLinkProps } from "../../../types";
 import { shell } from "electron";
-import { IpcOpenExternalLinkProps } from "../../../types/IpcHandlersProps/IpcOpenExternalLinkProps";
 
 const openLinkExternal: IpcHandler<IpcOpenExternalLinkProps> = {
   name: "openLinkExternal",

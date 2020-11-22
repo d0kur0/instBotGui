@@ -1,15 +1,16 @@
 import { app, BrowserWindow, ipcMain } from "electron";
 import * as path from "path";
 import * as fs from "fs";
-import { IpcHandler, OpenWindowProps } from "../../types";
-import { isNodeInstalled } from "./utils/systemNode";
-import { serveStatic } from "./utils/serveStatic";
-import { isBotNeedUpdate } from "./utils/instBot";
 import {
+  IpcHandler,
+  OpenWindowProps,
   WindowSizeBase,
   WindowSizeNodeRequired,
   WindowSizeUpdate,
-} from "../../types/important/windowSizes";
+} from "../../types";
+import { isNodeInstalled } from "./utils/systemNode";
+import { serveStatic } from "./utils/serveStatic";
+import { isBotNeedUpdate } from "./utils/instBot";
 
 const isDevelopment = process.env.NODE_ENV === "development";
 

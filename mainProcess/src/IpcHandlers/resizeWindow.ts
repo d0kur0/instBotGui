@@ -1,6 +1,5 @@
-import { IpcHandler } from "../../../types";
+import { IpcHandler, IpcWindowProps } from "../../../types";
 import { BrowserWindow } from "electron";
-import { IpcWindowProps } from "../../../types/IpcHandlersProps/IpcWindowProps";
 
 const resizeWindow: IpcHandler<IpcWindowProps> = {
   name: "resizeWindow",
