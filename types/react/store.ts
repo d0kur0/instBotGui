@@ -1,4 +1,4 @@
-import { InstBotSettings } from "../..";
+import { InstBotSettings } from "..";
 
 export const EmptySettings: InstBotSettings = {
   auth: {
@@ -37,7 +37,8 @@ export const EmptySettings: InstBotSettings = {
   commentsList: [],
 };
 
-export type SettingsEvents = {
+export type StoreEvents = {
+  // Settings setters
   "settings/set": InstBotSettings;
   "settings/auth/setUserName": string;
   "settings/auth/setPassword": string;
@@ -53,12 +54,22 @@ export type SettingsEvents = {
   "settings/delays/setChangeSource": number;
   "settings/browser/setArgs": string[];
   "settings/browser/setHeadless": boolean;
-  "settings/asyncTask/fetch": void;
+  "errorMessage/set": string;
+  "successMessage/set": string;
+  // Active processes setters
+  "activeProcesses/save/set": boolean;
+  "activeProcesses/bot/set": boolean;
+  // Async Tasks
+  "settings/asyncTask/get": void;
+  "settings/asyncTask/set": InstBotSettings;
 };
-
-export type StoreEvents = SettingsEvents;
 
 export type StoreState = {
   settings: InstBotSettings;
-  errors: string[];
+  errorMessage: string;
+  successMessage: string;
+  activeProcesses: {
+    save: boolean;
+    bot: boolean;
+  };
 };

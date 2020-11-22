@@ -1,7 +1,12 @@
+// Important types
 export * from "./important/IpcHandler";
-export * from "./other/InstBotSettings";
-export * from "./react/globalStore";
-export * from "./other/githubCommitsList";
 export * from "./important/openWindowProps";
-export * from "./react/updateEvents";
 export * from "./important/instBot";
+
+// Other types
+export * from "./other/InstBotSettings";
+export * from "./other/githubCommitsList";
+
+// React types
+export * from "./react/store";
+export * from "./react/updateEvents";
