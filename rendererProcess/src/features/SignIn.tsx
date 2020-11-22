@@ -9,14 +9,14 @@ import { StoreEvents, StoreState } from "../../../types";
 const { Title, Paragraph } = Typography;
 
 export default function SignIn() {
-  const { dispatch, auth } = useStoreon<StoreState, StoreEvents>("auth");
+  const { dispatch, settings } = useStoreon<StoreState, StoreEvents>("settings");
 
   const handleInputUsername = (event: React.FormEvent<HTMLInputElement>) => {
-    dispatch("setUsername", event.currentTarget.value);
+    dispatch("settings/auth/setUserName", event.currentTarget.value);
   };
 
   const handleInputPassword = (event: React.FormEvent<HTMLInputElement>) => {
-    dispatch("setPassword", event.currentTarget.value);
+    dispatch("settings/auth/setPassword", event.currentTarget.value);
   };
 
   return (
@@ -24,10 +24,9 @@ export default function SignIn() {
       <Typography>
         <Title level={3}>Данные для авторизации на сайте instagram</Title>
         <Paragraph>
-          В данных полях требуется ввести Ваши корректные данные для авторизации в
-          instagram, в точности как Вы их вводите при обычном входе. Двухфакторная
-          авторизация не предусмотренна, если включена, то требуется выключить на время
-          работы бота.
+          В данных полях требуется ввести Ваши корректные данные для авторизации в instagram, в
+          точности как Вы их вводите при обычном входе. Двухфакторная авторизация не
+          предусмотренна, если включена, то требуется выключить на время работы бота.
         </Paragraph>
       </Typography>
 
@@ -37,7 +36,11 @@ export default function SignIn() {
         <Row gutter={[16, 16]}>
           <Col span={12}>
             <Form.Item label="Логин">
-              <Input size="large" value={auth.username} onInput={handleInputUsername} />
+              <Input
+                size="large"
+                defaultValue={settings.auth.username}
+                onInput={handleInputUsername}
+              />
             </Form.Item>
           </Col>
           <Col span={12}>
@@ -45,10 +48,8 @@ export default function SignIn() {
               <Input.Password
                 size="large"
                 onInput={handleInputPassword}
-                value={auth.password}
-                iconRender={visible =>
-                  visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />
-                }
+                defaultValue={settings.auth.password}
+                iconRender={visible => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
               />
             </Form.Item>
           </Col>

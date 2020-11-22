@@ -7,19 +7,18 @@ import { StoreEvents, StoreState } from "../../../types";
 const { Title, Paragraph } = Typography;
 
 export default function Limits() {
-  const { dispatch, dayLimits } = useStoreon<StoreState, StoreEvents>("dayLimits");
+  const { dispatch, settings } = useStoreon<StoreState, StoreEvents>("settings");
 
   const handleInputLikes = (event: React.FormEvent<HTMLInputElement>) => {
-    console.log(+event.currentTarget.value);
-    dispatch("setLimitLikes", +event.currentTarget.value);
+    dispatch("settings/dayLimits/setLikes", +event.currentTarget.value);
   };
 
   const handleInputComments = (event: React.FormEvent<HTMLInputElement>) => {
-    dispatch("setLimitComments", +event.currentTarget.value);
+    dispatch("settings/dayLimits/setComments", +event.currentTarget.value);
   };
 
   const handleInputSubscribes = (event: React.FormEvent<HTMLInputElement>) => {
-    dispatch("setLimitSubscribes", +event.currentTarget.value);
+    dispatch("settings/dayLimits/setSubscribes", +event.currentTarget.value);
   };
 
   return (
@@ -42,7 +41,7 @@ export default function Limits() {
             <Form.Item label="Лайки">
               <InputNumber
                 onInput={handleInputLikes}
-                value={dayLimits.likes}
+                defaultValue={settings.dayLimits.likes}
                 size="large"
                 min={1}
                 style={{ width: "100%" }}
@@ -53,7 +52,7 @@ export default function Limits() {
             <Form.Item label="Подписки">
               <InputNumber
                 onInput={handleInputSubscribes}
-                value={dayLimits.subscribes}
+                defaultValue={settings.dayLimits.subscribes}
                 size="large"
                 min={1}
                 style={{ width: "100%" }}
@@ -64,7 +63,7 @@ export default function Limits() {
             <Form.Item label="Комментарии">
               <InputNumber
                 onInput={handleInputComments}
-                value={dayLimits.comments}
+                defaultValue={settings.dayLimits.comments}
                 size="large"
                 min={1}
                 style={{ width: "100%" }}

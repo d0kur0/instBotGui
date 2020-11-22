@@ -7,26 +7,26 @@ import { StoreEvents, StoreState } from "../../../types";
 const { Title, Paragraph } = Typography;
 
 export default function Delays() {
-  const { dispatch, delays } = useStoreon<StoreState, StoreEvents>("delays");
+  const { dispatch, settings } = useStoreon<StoreState, StoreEvents>("settings");
 
   const handleInputCommentsDelay = (event: React.FormEvent<HTMLInputElement>) => {
-    dispatch("setCommentsDelay", +event.currentTarget.value);
+    dispatch("settings/delays/setComments", +event.currentTarget.value);
   };
 
   const handleInputLikeDelay = (event: React.FormEvent<HTMLInputElement>) => {
-    dispatch("setLikeDelay", +event.currentTarget.value);
+    dispatch("settings/delays/setLikes", +event.currentTarget.value);
   };
 
   const handleInputSubscribeDelay = (event: React.FormEvent<HTMLInputElement>) => {
-    dispatch("setSubscribeDelay", +event.currentTarget.value);
+    dispatch("settings/delays/setSubscribes", +event.currentTarget.value);
   };
 
   const handleInputIterationDelay = (event: React.FormEvent<HTMLInputElement>) => {
-    dispatch("setIterationDelay", +event.currentTarget.value);
+    dispatch("settings/delays/setIteration", +event.currentTarget.value);
   };
 
   const handleInputChangeSourceDelay = (event: React.FormEvent<HTMLInputElement>) => {
-    dispatch("setChangeSourceDelay", +event.currentTarget.value);
+    dispatch("settings/delays/setChangeSource", +event.currentTarget.value);
   };
 
   return (
@@ -47,7 +47,7 @@ export default function Delays() {
           <Col span={12}>
             <Form.Item label="Пауза после написания комментария">
               <InputNumber
-                value={delays.afterWriteComment}
+                defaultValue={settings.delays.afterWriteComment}
                 onInput={handleInputCommentsDelay}
                 size="large"
                 min={1}
@@ -58,7 +58,7 @@ export default function Delays() {
           <Col span={12}>
             <Form.Item label="Пауза после установки лайка">
               <InputNumber
-                value={delays.afterClickLike}
+                defaultValue={settings.delays.afterClickLike}
                 onInput={handleInputLikeDelay}
                 size="large"
                 min={1}
@@ -69,7 +69,7 @@ export default function Delays() {
           <Col span={12}>
             <Form.Item label="Пауза после клика на подписку">
               <InputNumber
-                value={delays.afterClickSubscribe}
+                defaultValue={settings.delays.afterClickSubscribe}
                 onInput={handleInputSubscribeDelay}
                 size="large"
                 min={1}
@@ -80,7 +80,7 @@ export default function Delays() {
           <Col span={12}>
             <Form.Item label="Пауза после закрытия поста">
               <InputNumber
-                value={delays.afterEndIteration}
+                defaultValue={settings.delays.afterEndIteration}
                 onInput={handleInputIterationDelay}
                 size="large"
                 min={1}
@@ -91,7 +91,7 @@ export default function Delays() {
           <Col span={12}>
             <Form.Item label="Пауза между сменами источников (хештега / локации)">
               <InputNumber
-                value={delays.afterChangeSource}
+                defaultValue={settings.delays.afterChangeSource}
                 onInput={handleInputChangeSourceDelay}
                 size="large"
                 min={1}

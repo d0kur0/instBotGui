@@ -1,5 +1,5 @@
 import React from "react";
-import { Divider, Typography, InputNumber, Form, Input } from "antd";
+import { Divider, Typography, Form, Input } from "antd";
 import { Col, Row } from "antd";
 import { useStoreon } from "storeon/react";
 import { StoreEvents, StoreState } from "../../../types";
@@ -7,10 +7,10 @@ import { StoreEvents, StoreState } from "../../../types";
 const { Title, Paragraph } = Typography;
 
 export default function Comments() {
-  const { dispatch, commentsList } = useStoreon<StoreState, StoreEvents>("commentsList");
+  const { dispatch, settings } = useStoreon<StoreState, StoreEvents>("settings");
 
   const handleInputComments = (event: React.FormEvent<HTMLTextAreaElement>) => {
-    dispatch("setComments", event.currentTarget.value.split("\n"));
+    dispatch("settings/commentsList/set", event.currentTarget.value.split("\n"));
   };
 
   return (
@@ -32,7 +32,7 @@ export default function Comments() {
             <Input.TextArea
               onInput={handleInputComments}
               rows={10}
-              value={commentsList.join("\n")}
+              defaultValue={settings.commentsList.join("\n")}
             />
           </Col>
         </Row>

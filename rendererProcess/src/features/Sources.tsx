@@ -7,10 +7,10 @@ import { StoreEvents, StoreState } from "../../../types";
 const { Title, Paragraph } = Typography;
 
 export default function Sources() {
-  const { dispatch, sourcesList } = useStoreon<StoreState, StoreEvents>("sourcesList");
+  const { dispatch, settings } = useStoreon<StoreState, StoreEvents>("settings");
 
   const handleInputSources = (event: React.FormEvent<HTMLTextAreaElement>) => {
-    dispatch("setSources", event.currentTarget.value.split("\n"));
+    dispatch("settings/sourcesList/set", event.currentTarget.value.split("\n"));
   };
 
   return (
@@ -31,7 +31,7 @@ export default function Sources() {
         <Row gutter={[12, 5]}>
           <Col span={24}>
             <Input.TextArea
-              value={sourcesList.join("\n")}
+              defaultValue={settings.sourcesList.join("\n")}
               onInput={handleInputSources}
               rows={10}
             />

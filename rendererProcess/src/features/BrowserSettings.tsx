@@ -9,14 +9,14 @@ import { SwitchChangeEventHandler } from "antd/es/switch";
 const { Title, Paragraph, Link } = Typography;
 
 export default function BrowserSettings() {
-  const { dispatch, browser } = useStoreon<StoreState, StoreEvents>("browser");
+  const { dispatch, settings } = useStoreon<StoreState, StoreEvents>("settings");
 
   const handleInputArgs = (event: React.FormEvent<HTMLTextAreaElement>) => {
-    dispatch("setBrowserArgs", event.currentTarget.value.split("\n"));
+    dispatch("settings/browser/setArgs", event.currentTarget.value.split("\n"));
   };
 
   const handleChangeHeadless: SwitchChangeEventHandler = checked => {
-    dispatch("setBrowserHeadless", checked);
+    dispatch("settings/browser/setHeadless", checked);
   };
 
   return (
@@ -40,7 +40,7 @@ export default function BrowserSettings() {
         <Row gutter={[12, 5]}>
           <Col span={24}>
             <Form.Item labelAlign="left" label="Запуск в скрытом режиме">
-              <Switch checked={browser.headless} onChange={handleChangeHeadless} />
+              <Switch checked={settings.browser.headless} onChange={handleChangeHeadless} />
             </Form.Item>
           </Col>
           <Col span={24}>
@@ -49,7 +49,7 @@ export default function BrowserSettings() {
               label="Параметры запуска, каждая строка - отдельное значение">
               <Input.TextArea
                 onInput={handleInputArgs}
-                value={browser.args.join("\n")}
+                defaultValue={settings.browser.args.join("\n")}
                 rows={10}
               />
             </Form.Item>
