@@ -32,7 +32,7 @@ export default function Comments() {
             <Input.TextArea
               onInput={handleInputComments}
               rows={10}
-              defaultValue={settings.commentsList.join("\n")}
+              value={settings.commentsList.join("\n")}
             />
           </Col>
         </Row>

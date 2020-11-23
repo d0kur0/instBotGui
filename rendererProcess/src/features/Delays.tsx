@@ -47,7 +47,7 @@ export default function Delays() {
           <Col span={12}>
             <Form.Item label="Пауза после написания комментария">
               <InputNumber
-                defaultValue={settings.delays.afterWriteComment}
+                value={settings.delays.afterWriteComment}
                 onInput={handleInputCommentsDelay}
                 size="large"
                 min={1}
@@ -58,7 +58,7 @@ export default function Delays() {
           <Col span={12}>
             <Form.Item label="Пауза после установки лайка">
               <InputNumber
-                defaultValue={settings.delays.afterClickLike}
+                value={settings.delays.afterClickLike}
                 onInput={handleInputLikeDelay}
                 size="large"
                 min={1}
@@ -69,7 +69,7 @@ export default function Delays() {
           <Col span={12}>
             <Form.Item label="Пауза после клика на подписку">
               <InputNumber
-                defaultValue={settings.delays.afterClickSubscribe}
+                value={settings.delays.afterClickSubscribe}
                 onInput={handleInputSubscribeDelay}
                 size="large"
                 min={1}
@@ -80,7 +80,7 @@ export default function Delays() {
           <Col span={12}>
             <Form.Item label="Пауза после закрытия поста">
               <InputNumber
-                defaultValue={settings.delays.afterEndIteration}
+                value={settings.delays.afterEndIteration}
                 onInput={handleInputIterationDelay}
                 size="large"
                 min={1}
@@ -91,7 +91,7 @@ export default function Delays() {
           <Col span={12}>
             <Form.Item label="Пауза между сменами источников (хештега / локации)">
               <InputNumber
-                defaultValue={settings.delays.afterChangeSource}
+                value={settings.delays.afterChangeSource}
                 onInput={handleInputChangeSourceDelay}
                 size="large"
                 min={1}

@@ -41,7 +41,7 @@ export default function Limits() {
             <Form.Item label="Лайки">
               <InputNumber
                 onInput={handleInputLikes}
-                defaultValue={settings.dayLimits.likes}
+                value={settings.dayLimits.likes}
                 size="large"
                 min={1}
                 style={{ width: "100%" }}
@@ -52,7 +52,7 @@ export default function Limits() {
             <Form.Item label="Подписки">
               <InputNumber
                 onInput={handleInputSubscribes}
-                defaultValue={settings.dayLimits.subscribes}
+                value={settings.dayLimits.subscribes}
                 size="large"
                 min={1}
                 style={{ width: "100%" }}
@@ -63,7 +63,7 @@ export default function Limits() {
             <Form.Item label="Комментарии">
               <InputNumber
                 onInput={handleInputComments}
-                defaultValue={settings.dayLimits.comments}
+                value={settings.dayLimits.comments}
                 size="large"
                 min={1}
                 style={{ width: "100%" }}

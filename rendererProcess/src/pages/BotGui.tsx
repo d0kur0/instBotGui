@@ -7,11 +7,24 @@ import BrowserSettings from "../features/BrowserSettings";
 import Comments from "../features/Comments";
 import Sources from "../features/Sources";
 import StartButton from "../features/StartButton";
+import { useStoreon } from "storeon/react";
+import { StoreEvents, StoreState } from "../../../types";
+import { Spin } from "antd";
 
 const { TabPane } = Tabs;
 const { Content } = Layout;
 
+const SaveProcess = () => {
+  return (
+    <div style={{ position: "fixed", bottom: "30px", left: "30px" }}>
+      <Spin />
+    </div>
+  );
+};
+
 export default function BotGui() {
+  const { activeProcesses } = useStoreon<StoreState, StoreEvents>("activeProcesses");
+
   return (
     <Content style={{ padding: "0 30px" }}>
       <Tabs defaultActiveKey="1">
@@ -34,6 +47,8 @@ export default function BotGui() {
           <Sources />
         </TabPane>
       </Tabs>
+
+      {activeProcesses.save && <SaveProcess />}
 
       <StartButton />
     </Content>

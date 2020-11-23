@@ -38,7 +38,7 @@ export default function SignIn() {
             <Form.Item label="Логин">
               <Input
                 size="large"
-                defaultValue={settings.auth.username}
+                value={settings.auth.username}
                 onInput={handleInputUsername}
               />
             </Form.Item>
@@ -48,7 +48,7 @@ export default function SignIn() {
               <Input.Password
                 size="large"
                 onInput={handleInputPassword}
-                defaultValue={settings.auth.password}
+                value={settings.auth.password}
                 iconRender={visible => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
               />
             </Form.Item>

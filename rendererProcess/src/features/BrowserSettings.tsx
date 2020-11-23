@@ -49,7 +49,7 @@ export default function BrowserSettings() {
               label="Параметры запуска, каждая строка - отдельное значение">
               <Input.TextArea
                 onInput={handleInputArgs}
-                defaultValue={settings.browser.args.join("\n")}
+                value={settings.browser.args.join("\n")}
                 rows={10}
               />
             </Form.Item>

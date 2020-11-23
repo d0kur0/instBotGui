@@ -27,7 +27,7 @@ export default function () {
   });
 
   useEffect(() => {
-    ipcRenderer.invoke("botUpdate");
+    ipcRenderer.invoke("bot/update");
     let eventNumber = 1;
 
     const eventHandler = (event: HandledEventsKeys) => {

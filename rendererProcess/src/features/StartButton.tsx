@@ -11,7 +11,7 @@ const rootStyles: React.CSSProperties = {
 
 export default function StartButton() {
   const handleStart = () => {
-    ipcRenderer.invoke("botStart");
+    ipcRenderer.invoke("bot/start");
   };
 
   return (

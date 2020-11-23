@@ -31,7 +31,7 @@ export default function Sources() {
         <Row gutter={[12, 5]}>
           <Col span={24}>
             <Input.TextArea
-              defaultValue={settings.sourcesList.join("\n")}
+              value={settings.sourcesList.join("\n")}
               onInput={handleInputSources}
               rows={10}
             />
