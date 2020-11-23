@@ -1,4 +1,4 @@
-import { instBot, InstBotSettings, IpcHandler } from "../../../types";
+import { EmptySettings, instBot, InstBotSettings, IpcHandler } from "../../../types";
 import * as fs from "fs";
 import * as path from "path";
 import { spawn } from "promisify-child-process";
@@ -7,6 +7,15 @@ import { updateInstBot } from "../utils/instBot";
 const getSettings: IpcHandler<void> = {
   name: "bot/getSettings",
   async handler() {
+    const settingsExists = await fs.promises
+      .stat(path.join(instBot.rootDir, "app/settings.json"))
+      .then(
+        () => true,
+        () => false
+      );
+
+    if (!settingsExists) return EmptySettings;
+
     return JSON.parse(
       await fs.promises.readFile(path.join(instBot.rootDir, "app/settings.json"), {
         encoding: "utf-8",

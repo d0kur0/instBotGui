@@ -3,8 +3,7 @@ import * as path from "path";
 import * as http from "http";
 
 export const serveStatic = async (): Promise<void> => {
-  console.log(path.join(process.cwd(), "/.dist/rendererProcess"), process.cwd());
-  const server = new nodeStatic.Server(path.join(process.cwd(), "/.dist/rendererProcess"));
+  const server = new nodeStatic.Server(path.join(__dirname, "../../../rendererProcess"));
   await new Promise<void>((resolve, reject) => {
     http
       .createServer((request, response) => {
