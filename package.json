@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "instbot",
-  "productName": "instUI",
+  "productName": "Instagram Bot UI",
   "version": "1.0.0",
   "description": "UI application for instagram bot",
   "main": ".dist/mainProcess/src/index.js",
@@ -10,10 +10,8 @@
     "start": "cross-env NODE_ENV=production npm-run-all rp-build mp-build electron-start",
     "make": "cross-env NODE_ENV=production npm-run-all rp-build mp-build electron-make",
     "package": "cross-env NODE_ENV=production npm-run-all rp-build mp-build electron-package",
-    "electron-start": "electron-forge start",
-    "electron-package": "electron-forge package",
-    "electron-make": "electron-forge make",
-    "electron-publish": "electron-forge publish",
+    "electron-start": "electron .dist/mainProcess/src/index.js",
+    "electron-build": "electron-builder build",
     "react-lint": "eslint ./src --ext .ts,.js,.tsx",
     "react-start": "react-app-rewired start",
     "mp-build": "cd mainProcess && tsc",
@@ -24,48 +22,20 @@
     "name": "d0kur0",
     "email": "dev.dokuro@gmail.com"
   },
-  "license": "MIT",
-  "config": {
-    "forge": {
-      "packagerConfig": {
-        "ignore": [
-          ".ts",
-          "/.instbot",
-          ".update-revision",
-          "/.idea",
-          "/.editorconfig",
-          "/.gitignore",
-          "/.prettierrc",
-          "/config-overrides.js",
-          "/README.md",
-          "/yarn.lock",
-          "/yarn-error.log"
-        ]
-      },
-      "makers": [
-        {
-          "name": "@electron-forge/maker-squirrel",
-          "config": {
-            "name": "InstBotGui"
-          }
-        },
-        {
-          "name": "@electron-forge/maker-zip",
-          "platforms": [
-            "darwin"
-          ]
-        },
-        {
-          "name": "@electron-forge/maker-deb",
-          "config": {}
-        },
-        {
-          "name": "@electron-forge/maker-rpm",
-          "config": {}
-        }
-      ]
-    }
+  "build": {
+    "appId": "com.example.electron-boilerplate",
+    "files": [
+      ".dist/**/*",
+      "node_modules/**/*",
+      "package.json"
+    ],
+    "directories": {
+      "output": "build"
+    },
+    "publish": null,
+    "extends": null
   },
+  "license": "MIT",
   "dependencies": {
     "@ant-design/icons": "^4.2.2",
     "@testing-library/jest-dom": "^4.2.4",
@@ -100,14 +70,9 @@
     "unzipper": "^0.10.11"
   },
   "devDependencies": {
-    "@electron-forge/cli": "6.0.0-beta.52",
-    "@electron-forge/maker-deb": "6.0.0-beta.52",
-    "@electron-forge/maker-rpm": "6.0.0-beta.52",
-    "@electron-forge/maker-squirrel": "6.0.0-beta.52",
-    "@electron-forge/maker-zip": "6.0.0-beta.52",
     "@typescript-eslint/eslint-plugin": "^2.18.0",
     "@typescript-eslint/parser": "^2.18.0",
-    "electron": "9.3.1",
+    "electron": "^11.0.3",
     "typescript": "^4.1.2"
   },
   "eslintConfig": {
