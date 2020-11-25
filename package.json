@@ -30,6 +30,8 @@
       "packagerConfig": {
         "ignore": [
           ".ts",
+          "/.instbot",
+          ".update-revision",
           "/.idea",
           "/.editorconfig",
           "/.gitignore",
