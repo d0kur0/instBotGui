@@ -1,7 +1,7 @@
 import { EmptySettings, instBot, InstBotSettings, IpcHandler } from "../../../types";
 import * as fs from "fs";
 import * as path from "path";
-import { spawn } from "promisify-child-process";
+import { exec } from "promisify-child-process";
 import { updateInstBot } from "../utils/instBot";
 
 const getSettings: IpcHandler<void> = {
@@ -40,12 +40,12 @@ const setSettings: IpcHandler<InstBotSettings> = {
 
 const start: IpcHandler<void> = {
   name: "bot/start",
-  async handler(event) {
+  async handler() {
     // TODO: Add event for close process, error, etc
-    await spawn(`node`, [
-      "--experimental-json-modules",
-      path.join(instBot.rootDir, "/app/index.js"),
-    ]).catch(error => event.sender.send("botClose"));
+    await exec(
+      `start node --experimental-json-modules ${path.join(instBot.rootDir, "/app/index.js")}`,
+      { cwd: instBot.rootDir }
+    ).catch(console.log);
   },
 };
 
