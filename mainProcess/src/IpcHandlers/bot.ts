@@ -42,7 +42,7 @@ const start: IpcHandler<void> = {
   name: "bot/start",
   async handler() {
     // TODO: Add event for close process, error, etc
-    await exec(
+    exec(
       `start node --experimental-json-modules ${path.join(instBot.rootDir, "/app/index.js")}`,
       { cwd: instBot.rootDir }
     ).catch(console.log);
