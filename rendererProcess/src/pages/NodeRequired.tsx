@@ -21,8 +21,8 @@ export default function NodeRequired() {
         <Link onClick={openLinkExternal} href="https://nodejs.org/ru/download/">
           Node.js download
         </Link>
-        . Скачайте msi установщик нужной архитектуры, версии LTS. Если вы пользователь Linux или MacOS, ищите
-        информацию по установке самостоятельно.
+        . Скачайте msi установщик нужной архитектуры, версии LTS. Если вы пользователь Linux
+        или MacOS, ищите информацию по установке самостоятельно.
         <br />
         <Text type="danger">
           После установки перезапустите программу, возможно придётся перезайти в систему

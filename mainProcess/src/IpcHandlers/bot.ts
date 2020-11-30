@@ -27,6 +27,18 @@ const getSettings: IpcHandler<void> = {
 const setSettings: IpcHandler<InstBotSettings> = {
   name: "bot/setSettings",
   async handler(event, settings) {
+    if (
+      !(
+        settings?.auth ||
+        settings?.browser ||
+        settings?.delays ||
+        settings?.commentsList ||
+        settings?.dayLimits ||
+        settings?.sourcesList
+      )
+    )
+      return false;
+
     return await fs.promises
       .writeFile(path.join(instBot.rootDir, "app/settings.json"), JSON.stringify(settings), {
         encoding: "utf-8",

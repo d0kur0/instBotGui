@@ -10,6 +10,7 @@ import StartButton from "../features/StartButton";
 import { useStoreon } from "storeon/react";
 import { StoreEvents, StoreState } from "../../../types";
 import { Spin } from "antd";
+import Other from "../features/Other";
 
 const { TabPane } = Tabs;
 const { Content } = Layout;
@@ -45,6 +46,9 @@ export default function BotGui() {
         </TabPane>
         <TabPane tab="Источники" key="6">
           <Sources />
+        </TabPane>
+        <TabPane tab="Другие настройки" key="7">
+          <Other />
         </TabPane>
       </Tabs>
 
