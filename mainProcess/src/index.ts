@@ -22,10 +22,6 @@ const ipcHandlersMap: IpcHandler<never>[] = fs
 
 ipcHandlersMap.forEach(handler => ipcMain.handle(handler.name, handler.handler));
 
-if (require("electron-squirrel-startup")) {
-  app.quit();
-}
-
 const openWindow = async ({
   width,
   height,
