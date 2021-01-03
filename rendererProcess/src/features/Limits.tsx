@@ -1,10 +1,11 @@
 import React from "react";
-import { Divider, Typography, InputNumber, Form } from "antd";
+import { Divider, Typography, InputNumber, Form, Button, notification } from "antd";
 import { Col, Row } from "antd";
 import { useStoreon } from "storeon/react";
 import { StoreEvents, StoreState } from "../../../types";
 
 const { Title, Paragraph } = Typography;
+const { ipcRenderer } = window.require("electron");
 
 export default function Limits() {
   const { dispatch, settings } = useStoreon<StoreState, StoreEvents>("settings");
@@ -19,6 +20,17 @@ export default function Limits() {
 
   const handleInputSubscribes = (event: React.FormEvent<HTMLInputElement>) => {
     dispatch("settings/dayLimits/setSubscribes", +event.currentTarget.value);
+  };
+
+  const handleInputUnsubscribes = (event: React.FormEvent<HTMLInputElement>) => {
+    dispatch("settings/dayLimits/setUnSubscribes", +event.currentTarget.value);
+  };
+
+  const handleClearDB = () => {
+    ipcRenderer
+      .invoke("bot/clearLimitsDB")
+      .then(() => notification.success({ message: "База данных очищенна" }))
+      .catch(() => notification.error({ message: "Ошибка очистки базы данных" }));
   };
 
   return (
@@ -37,7 +49,7 @@ export default function Limits() {
 
       <Form layout="vertical">
         <Row gutter={[16, 16]}>
-          <Col span={8}>
+          <Col span={6}>
             <Form.Item label="Лайки">
               <InputNumber
                 onInput={handleInputLikes}
@@ -48,7 +60,7 @@ export default function Limits() {
               />
             </Form.Item>
           </Col>
-          <Col span={8}>
+          <Col span={6}>
             <Form.Item label="Подписки">
               <InputNumber
                 onInput={handleInputSubscribes}
@@ -59,7 +71,7 @@ export default function Limits() {
               />
             </Form.Item>
           </Col>
-          <Col span={8}>
+          <Col span={6}>
             <Form.Item label="Комментарии">
               <InputNumber
                 onInput={handleInputComments}
@@ -70,8 +82,23 @@ export default function Limits() {
               />
             </Form.Item>
           </Col>
+          <Col span={6}>
+            <Form.Item label="Отписки">
+              <InputNumber
+                onInput={handleInputUnsubscribes}
+                value={settings.dayLimits.unsubscribes}
+                size="large"
+                min={1}
+                style={{ width: "100%" }}
+              />
+            </Form.Item>
+          </Col>
         </Row>
       </Form>
+
+      <Divider />
+
+      <Button onClick={handleClearDB}>Очистить базу данных</Button>
     </React.Fragment>
   );
 }

@@ -17,12 +17,14 @@ export type InstBotSettings = {
     afterClickSubscribe: number;
     afterEndIteration: number;
     afterChangeSource: number;
+    afterUnsubscribe: number;
   };
 
   dayLimits: {
     likes: number;
     comments: number;
     subscribes: number;
+    unsubscribes: number;
   };
 
   browser: {

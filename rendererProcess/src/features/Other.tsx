@@ -1,5 +1,5 @@
 import React, { ChangeEvent } from "react";
-import { Input, notification, Typography } from "antd";
+import { Button, Divider, Input, notification, Typography } from "antd";
 import { useStoreon } from "storeon/react";
 import { StoreEvents, StoreState } from "../../../types";
 
@@ -25,8 +25,9 @@ export default function Other() {
             notification.success({ message: "Настройки сохранены" });
           })
           .catch(() => notification.error({ message: "Ошибка сохранения настроек" }));
-      } catch (error) {
+      } catch (e) {
         notification.error({ message: "Ошибка парсинга выбранного файла" });
+        console.error(e);
       }
     });
 
@@ -35,10 +36,36 @@ export default function Other() {
     });
   };
 
+  const handleExportSettings = () => {
+    try {
+      ipcRenderer
+        .invoke("bot/getSettings")
+        .then(settings => {
+          const a = document.createElement("a");
+          const file = new Blob([JSON.stringify(settings)], { type: "application/json" });
+
+          a.href = URL.createObjectURL(file);
+          a.download = "instBotSettings.json";
+          a.click();
+
+          URL.revokeObjectURL(a.href);
+        })
+        .catch(() => notification.error({ message: "Ошибка чтения файла настроек" }));
+    } catch (e) {
+      notification.error({ message: "Ошибка экспорта" });
+      console.error(e);
+    }
+  };
+
   return (
     <div>
       <Typography.Title level={3}>Импорт настроек</Typography.Title>
       <Input type="file" accept=".json" onChange={handleImportSettings} />
+
+      <Divider />
+
+      <Typography.Title level={3}>Экспорт настроек</Typography.Title>
+      <Button onClick={handleExportSettings}>Сохранить как...</Button>
     </div>
   );
 }

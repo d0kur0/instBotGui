@@ -65,6 +65,11 @@ const globalStore: StoreonModule<StoreState, StoreEvents> = store => {
     store.dispatch("settings/asyncTask/set", state.settings);
     return state;
   });
+  store.on("settings/dayLimits/setUnSubscribes", (state, limit) => {
+    state.settings.dayLimits.unsubscribes = limit;
+    store.dispatch("settings/asyncTask/set", state.settings);
+    return state;
+  });
   store.on("settings/sourcesList/set", (state, sources) => {
     state.settings.sourcesList = sources;
     store.dispatch("settings/asyncTask/set", state.settings);
@@ -82,6 +87,11 @@ const globalStore: StoreonModule<StoreState, StoreEvents> = store => {
   });
   store.on("settings/delays/setChangeSource", (state, delay) => {
     state.settings.delays.afterChangeSource = delay;
+    store.dispatch("settings/asyncTask/set", state.settings);
+    return state;
+  });
+  store.on("settings/delays/setUnsubscribe", (state, delay) => {
+    state.settings.delays.afterUnsubscribe = delay;
     store.dispatch("settings/asyncTask/set", state.settings);
     return state;
   });

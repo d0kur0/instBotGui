@@ -14,10 +14,23 @@ export default function StartButton() {
     ipcRenderer.invoke("bot/start");
   };
 
+  const handleStartUnsubscribe = () => {
+    ipcRenderer.invoke("bot/startUnsubscribe");
+  };
+
   return (
     <div style={rootStyles}>
-      <Button shape="round" type="primary" size="large" onClick={handleStart}>
+      <Button
+        style={{ marginRight: "15px" }}
+        shape="round"
+        type="primary"
+        size="large"
+        onClick={handleStart}>
         Запуск
+      </Button>
+
+      <Button shape="round" type="primary" size="large" onClick={handleStartUnsubscribe}>
+        Запуск в режиме отписок
       </Button>
     </div>
   );

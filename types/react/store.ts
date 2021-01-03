@@ -19,12 +19,14 @@ export const EmptySettings: InstBotSettings = {
     afterClickSubscribe: 5,
     afterEndIteration: 5,
     afterChangeSource: 5,
+    afterUnsubscribe: 5,
   },
 
   dayLimits: {
     likes: 180,
     comments: 180,
     subscribes: 180,
+    unsubscribes: 100,
   },
 
   browser: {
@@ -45,6 +47,7 @@ export type StoreEvents = {
   "settings/dayLimits/setLikes": number;
   "settings/dayLimits/setComments": number;
   "settings/dayLimits/setSubscribes": number;
+  "settings/dayLimits/setUnSubscribes": number;
   "settings/sourcesList/set": string[];
   "settings/commentsList/set": string[];
   "settings/delays/setComments": number;
@@ -52,6 +55,7 @@ export type StoreEvents = {
   "settings/delays/setSubscribes": number;
   "settings/delays/setIteration": number;
   "settings/delays/setChangeSource": number;
+  "settings/delays/setUnsubscribe": number;
   "settings/browser/setArgs": string[];
   "settings/browser/setHeadless": boolean;
   "errorMessage/set": string;

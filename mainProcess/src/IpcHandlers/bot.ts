@@ -61,6 +61,20 @@ const start: IpcHandler<void> = {
   },
 };
 
+const startUnsubscribe: IpcHandler<void> = {
+  name: "bot/startUnsubscribe",
+  async handler() {
+    // TODO: Add event for close process, error, etc
+    exec(
+      `start node --experimental-json-modules ${path.join(
+        instBot.rootDir,
+        "/app/index.js"
+      )} --unsubscribe`,
+      { cwd: instBot.rootDir }
+    ).catch(console.log);
+  },
+};
+
 const update: IpcHandler<void> = {
   name: "bot/update",
   async handler(event) {
@@ -72,4 +86,14 @@ const update: IpcHandler<void> = {
   },
 };
 
-module.exports = [start, update, setSettings, getSettings];
+const clearLimitsDB: IpcHandler<boolean> = {
+  name: "bot/clearLimitsDB",
+  async handler(event) {
+    return await fs.promises.unlink(path.join(instBot.rootDir, "limits.json")).then(
+      () => true,
+      () => false
+    );
+  },
+};
+
+module.exports = [start, update, setSettings, getSettings, clearLimitsDB, startUnsubscribe];

@@ -47,7 +47,7 @@ export default function BotGui() {
         <TabPane tab="Источники" key="6">
           <Sources />
         </TabPane>
-        <TabPane tab="Другие настройки" key="7">
+        <TabPane tab="Другое" key="7">
           <Other />
         </TabPane>
       </Tabs>

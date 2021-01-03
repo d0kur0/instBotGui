@@ -29,6 +29,10 @@ export default function Delays() {
     dispatch("settings/delays/setChangeSource", +event.currentTarget.value);
   };
 
+  const handleInputUnsubscribe = (event: React.FormEvent<HTMLInputElement>) => {
+    dispatch("settings/delays/setUnsubscribe", +event.currentTarget.value);
+  };
+
   return (
     <React.Fragment>
       <Typography>
@@ -93,6 +97,17 @@ export default function Delays() {
               <InputNumber
                 value={settings.delays.afterChangeSource}
                 onInput={handleInputChangeSourceDelay}
+                size="large"
+                min={1}
+                style={{ width: "100%" }}
+              />
+            </Form.Item>
+          </Col>
+          <Col span={12}>
+            <Form.Item label="Пауза между отписками">
+              <InputNumber
+                value={settings.delays.afterUnsubscribe}
+                onInput={handleInputUnsubscribe}
                 size="large"
                 min={1}
                 style={{ width: "100%" }}
