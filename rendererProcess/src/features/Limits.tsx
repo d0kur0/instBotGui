@@ -10,20 +10,20 @@ const { ipcRenderer } = window.require("electron");
 export default function Limits() {
   const { dispatch, settings } = useStoreon<StoreState, StoreEvents>("settings");
 
-  const handleInputLikes = (event: React.FormEvent<HTMLInputElement>) => {
-    dispatch("settings/dayLimits/setLikes", +event.currentTarget.value);
+  const handleInputLikes = (value: string) => {
+    dispatch("settings/dayLimits/setLikes", +value);
   };
 
-  const handleInputComments = (event: React.FormEvent<HTMLInputElement>) => {
-    dispatch("settings/dayLimits/setComments", +event.currentTarget.value);
+  const handleInputComments = (value: string) => {
+    dispatch("settings/dayLimits/setComments", +value);
   };
 
-  const handleInputSubscribes = (event: React.FormEvent<HTMLInputElement>) => {
-    dispatch("settings/dayLimits/setSubscribes", +event.currentTarget.value);
+  const handleInputSubscribes = (value: string) => {
+    dispatch("settings/dayLimits/setSubscribes", +value);
   };
 
-  const handleInputUnsubscribes = (event: React.FormEvent<HTMLInputElement>) => {
-    dispatch("settings/dayLimits/setUnSubscribes", +event.currentTarget.value);
+  const handleInputUnsubscribes = (value: string) => {
+    dispatch("settings/dayLimits/setUnSubscribes", +value);
   };
 
   const handleClearDB = () => {

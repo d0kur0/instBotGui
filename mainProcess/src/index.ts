@@ -11,6 +11,11 @@ import {
 import { isNodeInstalled } from "./utils/systemNode";
 import { serveStatic } from "./utils/serveStatic";
 import { isBotNeedUpdate } from "./utils/instBot";
+import {
+  checkLicenseKeyRemote,
+  getLocalLicenseKey,
+  isLicenseKeyExists,
+} from "./utils/license";
 
 const isDevelopment = process.env.NODE_ENV === "development";
 
@@ -61,6 +66,17 @@ const createWindow = async (): Promise<void> => {
     });
 
     return;
+  }
+
+  if (!(await isLicenseKeyExists())) {
+    if (!(await checkLicenseKeyRemote(await getLocalLicenseKey()))) {
+      await openWindow({
+        ...WindowSizeNodeRequired,
+        route: "enter-license",
+      });
+
+      return;
+    }
   }
 
   await openWindow({ ...WindowSizeBase, route: "" });

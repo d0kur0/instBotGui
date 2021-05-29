@@ -1,10 +1,9 @@
 import React from "react";
-import { Divider, Typography, Form, Switch, Input } from "antd";
+import { Divider, Typography, Form, Input } from "antd";
 import { Col, Row } from "antd";
 import { openLinkExternal } from "../utils/openLinkExternal";
 import { useStoreon } from "storeon/react";
 import { StoreEvents, StoreState } from "../../../types";
-import { SwitchChangeEventHandler } from "antd/es/switch";
 
 const { Title, Paragraph, Link } = Typography;
 
@@ -13,10 +12,6 @@ export default function BrowserSettings() {
 
   const handleInputArgs = (event: React.FormEvent<HTMLTextAreaElement>) => {
     dispatch("settings/browser/setArgs", event.currentTarget.value.split("\n"));
-  };
-
-  const handleChangeHeadless: SwitchChangeEventHandler = checked => {
-    dispatch("settings/browser/setHeadless", checked);
   };
 
   return (
@@ -38,11 +33,6 @@ export default function BrowserSettings() {
 
       <Form layout="vertical">
         <Row gutter={[12, 5]}>
-          <Col span={24}>
-            <Form.Item labelAlign="left" label="Запуск в скрытом режиме">
-              <Switch checked={settings.browser.headless} onChange={handleChangeHeadless} />
-            </Form.Item>
-          </Col>
           <Col span={24}>
             <Form.Item
               labelAlign="left"

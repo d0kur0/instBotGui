@@ -7,6 +7,7 @@ import { StoreContext } from "storeon/react";
 import { store } from "./store";
 import Update from "./pages/Update";
 import "./App.css";
+import EnterLicense from "./pages/EnterLicense";
 
 export default function App() {
   return (
@@ -18,6 +19,9 @@ export default function App() {
           </Route>
           <Route path="/node-required">
             <NodeRequired />
+          </Route>
+          <Route path="/enter-license">
+            <EnterLicense />
           </Route>
           <Route path="/">
             <BotGui />

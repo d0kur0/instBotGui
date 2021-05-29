@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import { Progress } from "antd";
 import { ProgressProps } from "antd/es/progress";
 import { HandledEvents, HandledEventsKeys } from "../../../types";
-import { WindowSizeBase } from "../../../types/important/windowSizes";
+import { WindowSizeBase } from "../../../types";
 
 const { ipcRenderer } = window.require("electron");
 

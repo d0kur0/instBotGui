@@ -9,28 +9,28 @@ const { Title, Paragraph } = Typography;
 export default function Delays() {
   const { dispatch, settings } = useStoreon<StoreState, StoreEvents>("settings");
 
-  const handleInputCommentsDelay = (event: React.FormEvent<HTMLInputElement>) => {
-    dispatch("settings/delays/setComments", +event.currentTarget.value);
+  const handleInputCommentsDelay = (value: string) => {
+    dispatch("settings/delays/setComments", +value);
   };
 
-  const handleInputLikeDelay = (event: React.FormEvent<HTMLInputElement>) => {
-    dispatch("settings/delays/setLikes", +event.currentTarget.value);
+  const handleInputLikeDelay = (value: string) => {
+    dispatch("settings/delays/setLikes", +value);
   };
 
-  const handleInputSubscribeDelay = (event: React.FormEvent<HTMLInputElement>) => {
-    dispatch("settings/delays/setSubscribes", +event.currentTarget.value);
+  const handleInputSubscribeDelay = (value: string) => {
+    dispatch("settings/delays/setSubscribes", +value);
   };
 
-  const handleInputIterationDelay = (event: React.FormEvent<HTMLInputElement>) => {
-    dispatch("settings/delays/setIteration", +event.currentTarget.value);
+  const handleInputIterationDelay = (value: string) => {
+    dispatch("settings/delays/setIteration", +value);
   };
 
-  const handleInputChangeSourceDelay = (event: React.FormEvent<HTMLInputElement>) => {
-    dispatch("settings/delays/setChangeSource", +event.currentTarget.value);
+  const handleInputChangeSourceDelay = (value: string) => {
+    dispatch("settings/delays/setChangeSource", +value);
   };
 
-  const handleInputUnsubscribe = (event: React.FormEvent<HTMLInputElement>) => {
-    dispatch("settings/delays/setUnsubscribe", +event.currentTarget.value);
+  const handleInputUnsubscribe = (value: string) => {
+    dispatch("settings/delays/setUnsubscribe", +value);
   };
 
   return (

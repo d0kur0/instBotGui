@@ -3,6 +3,7 @@
 package-lock.json
 yarn.lock
 .update-revision
+.license-key
 .instbot
 .dist
 yarn-error.log
